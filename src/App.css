@@ -39,6 +39,14 @@ hr {
 .table td {
    text-align: left;
 }
+.table tr th:first-child,
+.table tr td:first-child {
+  padding-left: 0
+}
+.table tr th:last-child,
+.table tr td:last-child {
+  padding-right: 0
+}
 
 .form-control {
   background: #f5f7f9!important;
@@ -53,4 +61,11 @@ hr {
 }
 .form-control:focus {
   background: #f5f7f9;
+}
+
+#invoiceCapture {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
