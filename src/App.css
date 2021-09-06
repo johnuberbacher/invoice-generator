@@ -1,12 +1,19 @@
 body, html {
   background: #f2f3f7;
-  min-height: 100vh;
   font-size: 0.9rem
+}
+body,
+html,
+#root,
+.App {
+  min-height: 100vh
 }
 .btn {
   font-size: 0.9rem;
   font-weight: 500;
   padding: 0.66rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 .1rem .1rem rgba(0,0,0,.05)!important
 }
 .App-link {
   color: #61dafb;
@@ -29,10 +36,14 @@ hr {
   border-bottom: 1px solid #0000001a;
   border-bottom-color: #0000001a!important
 }
+.table td {
+   text-align: left;
+}
 
 .form-control {
   background: #f5f7f9!important;
   font-weight: 400;
+  padding: .5rem .75rem;
   border: none
 }
 .form-control::placeholder,
