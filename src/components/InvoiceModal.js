@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
+import { BiPaperPlane } from "react-icons/bi";
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf'
 
@@ -15,6 +16,7 @@ function GenerateInvoice() {
     const pdf = new jsPDF({
       orientation: 'landscape',
     });
+    pdf.internal.scaleFactor = 1;
     const imgProps= pdf.getImageProperties(imgData);
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
@@ -56,7 +58,7 @@ class InvoiceModal extends React.Component {
                   <div>email@address.com</div>
                 </Col>
               </Row>
-              <Table>
+              <Table className="mb-0">
                 <thead>
                   <tr>
                     <th>QTY</th>
@@ -78,12 +80,44 @@ class InvoiceModal extends React.Component {
                   </tr>
                 </tbody>
               </Table>
+              <Table>
+                <tbody>
+                  <tr>
+                    <td>&nbsp;</td>
+                      <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr className="text-right">
+                    <td></td>
+                    <td className="fw-bold" style={{width: '100px'}}>TAX</td>
+                    <td className="text-right" style={{width: '100px'}}>$0.00</td>
+                  </tr>
+                    <tr>
+                      <td></td>
+                      <td className="fw-bold" style={{width: '100px'}}>TOTAL</td>
+                      <td align="right" style={{width: '100px'}}>$0.00</td>
+                    </tr>
+                </tbody>
+              </Table>
+              <div className="bg-light py-3 px-4 rounded">
+                Thanks for your business!
+              </div>
             </div>
           </div>
-          <div class="pb-4 px-4">
-            <Button variant="primary" className="d-block w-100" onClick={GenerateInvoice}>Send Invoice</Button>
+          <div className="pb-4 px-4">
+          <Row>
+            <Col md={6}>
+              <Button variant="primary" className="d-block w-100" onClick={GenerateInvoice}>
+                <BiPaperPlane style={{width: '15px', height: '15px', marginTop: '-3px'}} className="text-white me-2"/>Send Invoice
+              </Button>
+            </Col>
+            <Col md={6}>
+              <Button variant="light" className="d-block w-100 mt-3 mt-md-0" onClick={GenerateInvoice}>Download Copy</Button>
+            </Col>
+          </Row>
           </div>
         </Modal>
+        <hr className="mt-4"/>
       </div>
     )
   }

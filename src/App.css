@@ -23,8 +23,10 @@ html,
   box-shadow: 0 .1rem .1rem rgba(0,0,0,.05)!important
 }
 
-.rounded {
-  border-radius: 0.756rem!important
+.modal-content,
+.card {
+  overflow: hidden;
+  border-radius: 0.756rem
 }
 
 hr {

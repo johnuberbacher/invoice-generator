@@ -19,10 +19,8 @@ class App extends Component {
             <InvoiceForm/>
           </Col>
           <Col md={4} xl={3}>
-            <div class="sticky-top pt-4">
+            <div className="sticky-top pt-4">
               <InvoiceModal></InvoiceModal>
-              <Button variant="light" className="d-block w-100 bg-white mt-3">Download Copy</Button>
-              <hr className="mt-4"/>
             </div>
           </Col>
         </Row>
