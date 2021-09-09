@@ -12,34 +12,46 @@ import { BiTrash } from "react-icons/bi";
 class InvoiceForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      items: []
-    };
+    this.state = {};
+    this.state.items = [
+      {
+        name: '',
+        description: '',
+        quantity: 1,
+        price: '0.00',
+      }
+    ];
+    this.handleAddEvent = this.handleAddEvent.bind(this);
     this.addItem = this.addItem.bind(this);
-    this.removeItem = this.removeItem.bind(this);
   }
-  // Add items
   addItem(event) {
     event.preventDefault();
     var itemArray = this.state.items;
     // grab input text value
     //var newItemInput = this.refs.newItem.value;
-    var newItemInput = 'test';
+    var newItemInput = {
+      name: '',
+      description: '',
+      quantity: 1,
+      price: '0.00',
+    };
     // add new text value to item array
     itemArray.push(newItemInput);
     this.setState({ items: itemArray });
     // this.refs.newItem.value = "";
   }
-  // Remove Items
-  removeItem(name, i) {
-    var items = this.state.items.slice();
-    // remove item at index
-    items.splice(i, 1);
-    //update item array
-    this.setState({
-      items
-    });
+  handleAddEvent(event) {
+    var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
+    var item = {
+      name: '',
+      description: '',
+      quantity: 1,
+      price: '4.99',
+    }
+    this.state.items.push(item);
+    this.setState(this.state.items);
   }
+
   render() {
     return(
       <Card className="p-4 my-4">
@@ -52,7 +64,7 @@ class InvoiceForm extends React.Component {
             <span className="fw-bold d-block me-2">Due Date:</span><Form.Control type="date" style={{maxWidth: '150px'}}/>
           </div>
         </div>
-        <div className="w-100 text-left text-lg-center mt-5 mt-lg-0 mb-5">
+        <div className="w-100 text-left text-lg-center mt-5 mt-lg-0 mb-5 d-none">
           <h3 className="fw-bold">Invoice #<span className="text-primary">001</span></h3>
         </div>
         <hr className="my-4"/>
@@ -100,16 +112,6 @@ class InvoiceForm extends React.Component {
   }
 }
 class InvoiceItem extends InvoiceForm {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 1.00,
-    }
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
-  handleInputChange(e) {
-		this.setState({value:e.target.value})
-  }
   render() {
     return (
       <Table>
@@ -125,19 +127,19 @@ class InvoiceItem extends InvoiceForm {
         <tbody>
           {this.props.items.map((item, i) => {
             return (
-              <tr id={i} key={i}>
+              <tr  key={i} id={'row-' + i}>
                 <td>
-                  <Form.Control placeholder="Item name" type="text" className="mb-2"/>
-                  <Form.Control placeholder="Description" type="text"/>
+                  <EditableField key={i.name} value={item.name} type="text"/>
+                  <EditableField key={i.description} value={item.description} type="text"/>
                 </td>
-                <td style={{width: '70px'}}>{i.uuid}{i}
-                  <Form.Control placeholder="1"  type="number" min="1" max="999"/>
+                <td style={{width: '70px'}}>
+                  <EditableField key={i.quantity} value={item.quantity} min="1" max="999" type="number"/>
                 </td>
                 <td style={{width: '100px'}}>
-                  <Form.Control placeholder="1.00" type="number" step="0.01" min="1.00" max="999" name={this.state.value} value={this.state.value} onChange={this.handleInputChange.bind(this)}/>
+                  <EditableField key={i.price} value={item.price} type="number" step="0.01" min="1.00" max="999"/>
                 </td>
-                <td className="text-end" style={{width: '100px'}}>
-                  <div className="fw-bold pt-2">${this.state.itemPrice * 2}</div>
+                <td className="text-end" style={{width: '75px'}}>
+                  <div className="fw-bold pt-2">${item.price * item.quantity}</div>
                 </td>
                 <td className="text-center" style={{width: '100px'}}>
                   <BiTrash style={{height: '33px', width: '33px', padding: '7.5px'}} className="text-white btn btn-danger"/>
@@ -147,6 +149,65 @@ class InvoiceItem extends InvoiceForm {
           })}
         </tbody>
       </Table>
+    )
+  }
+}
+
+class EditableField extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      id: props.id,
+      type: props.type,
+      value: props.value,
+      description: props.description,
+      editClassName: props.editClassName,
+      edit: false
+    }
+  }
+  render() {
+    return (
+      this.state.edit===true&&
+      <Form.Control
+        name={this.state.value}
+        type={this.state.type}
+        value={this.state.value}
+        className="my-1"
+        onFocus={event=>{
+          const value = event.target.value
+          event.target.value = ''
+          event.target.value = value
+          this.setState({backup:this.state.value})
+        }}
+        onChange={event=>{
+          this.setState({value:event.target.value})
+        }}
+        onBlur={event=>{
+          this.setState({value:event.target.value})
+          this.setState({edit:false})
+        }}
+        onKeyUp={event=>{
+          if(event.key==='Escape') {
+            this.setState({edit:false, value:this.state.backup})
+          }
+          if(event.key==='Enter') {
+            this.setState({edit:false})
+          }
+        }}
+      />
+      ||
+      <Form.Control
+        name={this.state.value}
+        type={this.state.type}
+        value={this.state.value}
+        className="my-1"
+        onChange={event=>{
+          this.setState({value:event.target.value})
+        }}
+        onClick={event=>{
+          this.setState({edit:this.state.edit!==true})
+        }}
+      />
     )
   }
 }
