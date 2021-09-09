@@ -55,7 +55,6 @@ class InvoiceForm extends React.Component {
   render() {
     return(
       <Card className="p-4 my-4">
-      <Form onSubmit={this.addItem}>
         <div className="d-flex flex-row align-items-center justify-content-between mb-3">
           <div>
             <span className="fw-bold">Date:&nbsp;</span>{new Date().toLocaleDateString()}
@@ -85,7 +84,7 @@ class InvoiceForm extends React.Component {
         <InvoiceItem items={this.state.items} removeItem={this.removeItem} />
         <Row>
           <Col lg={6}>
-            <Button className="fw-bold" type="submit">Add Item</Button>
+            <Button className="fw-bold" onClick={this.addItem}>Add Item</Button>
           </Col>
           <Col lg={6} >
             <div className="d-flex flex-row align-items-start justify-content-between">
@@ -106,7 +105,7 @@ class InvoiceForm extends React.Component {
         <hr className="my-5"/>
         <Form.Label className="fw-bold">Notes:</Form.Label>
         <Form.Control placeholder="Thanks for your business!" as="textarea" rows={1}/>
-        </Form>
+
       </Card>
     )
   }

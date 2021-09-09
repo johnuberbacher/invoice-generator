@@ -31,13 +31,10 @@ class InvoiceModal extends React.Component {
   state = {
     isOpen: false
   };
-  openModal = () => this.setState({ isOpen: true });
-  closeModal = () => this.setState({ isOpen: false });
   render() {
     return(
       <div>
-        <Button variant="primary" className="d-block w-100" onClick={this.openModal}>Review Invoice</Button>
-        <Modal show={this.state.isOpen} onHide={this.closeModal} size="lg" centered>
+        <Modal show={this.props.showModal} onHide={this.closeModal} size="lg" centered>
           <div  id="invoiceCapture">
             <div className="d-flex flex-row justify-content-between align-items-start bg-light w-100 p-4">
               <div>
