@@ -28,18 +28,15 @@ function GenerateInvoice() {
 }
 
 class InvoiceModal extends React.Component {
-  state = {
-    isOpen: false
-  };
   render() {
     return(
       <div>
-        <Modal show={this.props.showModal} onHide={this.closeModal} size="lg" centered>
+        <Modal show={this.props.showModal} onHide={this.props.closeModal} size="lg" centered>
           <div  id="invoiceCapture">
             <div className="d-flex flex-row justify-content-between align-items-start bg-light w-100 p-4">
               <div>
                 <h5 className="fw-bold my-2">Name</h5>
-                <h6 className="fw-bold my-2 text-secondary">Invoice #001</h6>
+                <h6 className="fw-bold my-2 text-secondary">{this.props.date}</h6>
               </div>
               <h6 className="fw-bold my-2">Amount Due: $0.00</h6>
             </div>
