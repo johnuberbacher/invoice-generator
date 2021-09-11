@@ -14,11 +14,12 @@ class EditableField extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      id: props.id,
       type: props.type,
       value: props.value,
+      name: props.name,
       description: props.description,
       editClassName: props.editClassName,
+      placeholder: props.placeholder,
       edit: false
     }
   }
@@ -26,9 +27,10 @@ class EditableField extends React.Component {
     return (
       this.state.edit===true&&
       <Form.Control
-        name={this.state.value}
         type={this.state.type}
+        name={this.state.name}
         value={this.state.value}
+        placeholder={this.state.placeholder}
         className="my-1"
         onFocus={event=>{
           const value = event.target.value
@@ -57,6 +59,7 @@ class EditableField extends React.Component {
         name={this.state.value}
         type={this.state.type}
         value={this.state.value}
+        placeholder={this.state.placeholder}
         className="my-1"
         onChange={event=>{
           this.setState({value:event.target.value})

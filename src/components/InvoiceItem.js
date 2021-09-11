@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import { BiTrash } from "react-icons/bi";
@@ -26,16 +26,16 @@ class InvoiceItem extends React.Component {
         <tbody>
           {this.props.items.map((item, i) => {
             return (
-              <tr  key={i} id={'row-' + i}>
-                <td>
-                  <EditableField key={i.name} value={item.name} type="text"/>
-                  <EditableField key={i.description} value={item.description} type="text"/>
+              <tr key={i} id={'tr-' + i}>
+                <td key={'td-' + i}>
+                  <EditableField placeholder="testing" key={item.name} value={item.name||''} type="text"/>
+                  <EditableField placeholder="testing" key={item.description} value={item.description || ''} type="text"/>
                 </td>
                 <td style={{width: '70px'}}>
-                  <EditableField key={i.quantity} value={item.quantity} min="1" max="999" type="number"/>
+                  <EditableField key={item.quantity} value={item.quantity} min="1" max="999" type="number"/>
                 </td>
                 <td style={{width: '100px'}}>
-                  <EditableField key={i.price} value={item.price} type="number" step="0.01" min="1.00" max="999"/>
+                  <EditableField key={item.price} value={item.price} type="number" step="0.01" min="1.00" max="999"/>
                 </td>
                 <td className="text-end" style={{width: '75px'}}>
                   <div className="fw-bold pt-2">${item.price * item.quantity}</div>

@@ -11,29 +11,11 @@ import InvoiceModal from './components/InvoiceModal';
 import InvoiceForm from './components/InvoiceForm';
 
 class App extends Component {
-  state = {
-    isOpen: false
-  };
-  openModal = () => this.setState({ isOpen: true });
-  closeModal = () => this.setState({ isOpen: false });
-
   render() {
   return (
     <div className="App d-flex flex-column align-items-center justify-content-center w-100">
       <Container>
-        <Form>
-          <Row>
-            <Col md={8} xl={9}>
-              <InvoiceForm/>
-            </Col>
-            <Col md={4} xl={3}>
-              <div className="sticky-top pt-4">
-                <Button variant="primary"  onClick={this.openModal} className="d-block w-100">Review Invoice</Button>
-                <InvoiceModal showModal={this.state.isOpen} closeModal={this.closeModal} date={"date"}></InvoiceModal>
-              </div>
-            </Col>
-          </Row>
-        </Form>
+        <InvoiceForm/>
       </Container>
     </div>
   );
