@@ -17,6 +17,7 @@ class InvoiceForm extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
+      currency: '$',
       currentDate: '',
       dateOfIssue: '',
       billTo: '',
@@ -61,22 +62,27 @@ class InvoiceForm extends React.Component {
       name: evt.target.name,
       value: evt.target.value
     };
-  var itemss = this.state.items.slice();
-  var newItems = itemss.map(function(items) {
+    var itemss = this.state.items.slice();
+    var newItems = itemss.map(function(items) {
 
-    for (var key in items) {
-      if (key == item.name && items.id == item.id) {
-        items[key] = item.value;
+      for (var key in items) {
+        if (key == item.name && items.id == item.id) {
+          items[key] = item.value;
 
+        }
       }
-    }
-    return items;
-  });
-    this.setState({itemss:newItems});
+      return items;
+    });
+    this.setState({items:newItems});
   //  console.log(this.state.items);
   };
   editField = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+  onCurrencyChange = (selectedOption) => {
+    console.log('state before:' + this.state.currency);
+    this.setState(selectedOption);
+    console.log('state after:' + this.state.currency);
   };
   openModal = (event) => {
     event.preventDefault()
@@ -86,6 +92,12 @@ class InvoiceForm extends React.Component {
      isOpen: false
   });
   render() {
+    var currencies = [
+      { value: '$', label: 'USD' },
+      { value: '£', label: 'GBP' },
+      { value: '€', label: 'EUR' },
+      { value: '¥', label: 'CNY' },
+    ];
     return(
       <Form onSubmit={this.openModal}>
         <Row>
@@ -119,33 +131,44 @@ class InvoiceForm extends React.Component {
                   <Form.Control placeholder={"Billing address"} value={this.state.billFromAddress} type="text" name="billFromAddress" className="my-2" onChange={(event)=>this.editField(event)} required/>
                 </Col>
               </Row>
-              <InvoiceItem onItemizedItemEdit={this.onItemizedItemEdit.bind(this)} onRowAdd={this.handleAddEvent.bind(this)} onRowDel={this.handleRowDel.bind(this)} items={this.state.items}/>
+              <InvoiceItem onItemizedItemEdit={this.onItemizedItemEdit.bind(this)} onRowAdd={this.handleAddEvent.bind(this)} onRowDel={this.handleRowDel.bind(this)} currency={this.state.currency} items={this.state.items}/>
               <Row className="mt-4 justify-content-end">
                 <Col lg={6} >
                   <div className="d-flex flex-row align-items-start justify-content-between">
                     <span className="fw-bold">Subtotal: </span>
-                    <span>$0.00</span>
+                    <span>{this.state.currency}0.00</span>
                   </div>
                   <div className="d-flex flex-row align-items-start justify-content-between mt-2">
                     <span className="fw-bold">Discount: </span>
-                    <span>$0.00</span>
+                    <span>{this.state.currency}0.00</span>
                   </div>
                   <hr/>
                   <div className="d-flex flex-row align-items-start justify-content-between" style={{fontSize: '1.125rem'}}>
                     <span className="fw-bold">Total: </span>
-                    <span className="fw-bold">$0.00</span>
+                    <span className="fw-bold">{this.state.currency}0.00</span>
                   </div>
                 </Col>
               </Row>
               <hr className="my-4"/>
               <Form.Label className="fw-bold">Notes:</Form.Label>
-              <Form.Control placeholder="Thanks for your business!" as="textarea" className="my-2" rows={2}/>
+              <Form.Control placeholder="Thanks for your business!" onChange={(event)=>this.editField(event)} as="textarea" className="my-2" rows={2}/>
             </Card>
           </Col>
           <Col md={4} xl={3}>
             <div className="sticky-top pt-md-3 pt-xl-4">
               <Button variant="primary" type="submit" className="d-block w-100">Review Invoice</Button>
-              <InvoiceModal showModal={this.state.isOpen} closeModal={this.closeModal} info={this.state} items={this.state.items}></InvoiceModal>
+              <InvoiceModal showModal={this.state.isOpen} closeModal={this.closeModal} info={this.state} items={this.state.items} currency={this.state.currency}></InvoiceModal>
+                <Form.Label className="fw-bold">Currency:</Form.Label>
+                <Form.Select onChange={event => this.onCurrencyChange({ currency: event.target.value })} className="btn btn-light my-1" aria-label="Change Currency">
+                  <option value="$">USD (United States Dollar)</option>
+                  <option value="£">GBP (British Pound Sterling)</option>
+                  <option value="¥">JPY (Japanese Yen)</option>
+                  <option value="CAD$">CAD (Canadian Dollar)</option>
+                  <option value="AUD$">AUD (Australian Dollar)</option>
+                  <option value="SGD$">SGD (Signapore Dollar)</option>
+                  <option value="¥">CNY (Chinese Renminbi)</option>
+                  <option value="₿">BTC (Bitcoin)</option>
+                </Form.Select>
             </div>
           </Col>
         </Row>

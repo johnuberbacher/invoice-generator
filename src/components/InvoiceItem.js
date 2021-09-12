@@ -9,9 +9,10 @@ import EditableField from './EditableField';
 class ItemizedTable extends React.Component {
   render() {
     var onItemizedItemEdit = this.props.onItemizedItemEdit;
+    var currency = this.props.currency;
     var rowDel = this.props.onRowDel;
     var itemTable = this.props.items.map(function(item) {
-      return (<ItemRow onItemizedItemEdit={onItemizedItemEdit} item={item} onDelEvent={rowDel.bind(this)} key={item.id}/>)
+      return (<ItemRow onItemizedItemEdit={onItemizedItemEdit} item={item} onDelEvent={rowDel.bind(this)} key={item.id} currency={currency}/>)
     });
     return (
       <div>
@@ -78,17 +79,18 @@ class ItemRow extends React.Component {
           <EditableField
             onItemizedItemEdit={this.props.onItemizedItemEdit}
             cellData={{
-            leading: "$",
+            leading: this.props.currency,
             type: "number",
             name: "price",
             min: 1,
             step: "0.01",
+            presicion: 2,
             textAlign: "text-end",
             value: this.props.item.price,
             id: this.props.item.id
           }}/>
         </td>
-        <td className="text-center" style={{minWidth: '100px'}}>
+        <td className="text-center" style={{minWidth: '50px'}}>
           <BiTrash onClick={this.onDelEvent.bind(this)} style={{height: '33px', width: '33px', padding: '7.5px'}} className="text-white mt-1 btn btn-danger"/>
         </td>
       </tr>
