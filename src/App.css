@@ -1,5 +1,8 @@
 body, html {
-  background: #f2f3f7;
+  font-size: 0.9rem;
+  background: #f2f3f7
+}
+body, .form-control {
   font-size: 0.9rem
 }
 body,
@@ -7,6 +10,16 @@ html,
 #root,
 .App {
   min-height: 100vh
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 .btn {
   font-size: 0.9rem;

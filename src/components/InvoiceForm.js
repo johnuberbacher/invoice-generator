@@ -23,54 +23,74 @@ class InvoiceForm extends React.Component {
       billToEmail: '',
       billToAddress: '',
       billFrom: 'John Uberbacher',
-      billFromEmail: 'johnuberbacher@gmail.com',
+      billFromEmail: 'john@email.com',
       billFromAddress: '123 Awesome Street, Denver CO',
       notes: '',
     };
     this.state.items = [
       {
-        name: 'tester',
-        description: '',
-        quantity: 1,
-        price: '0.00',
-      }
+        id: 1,
+        description: 'Office supplies',
+        price: 29.99,
+        quantity: 3,
+        name: 'Printer Paper'
+      },
     ];
-    this.addItem = this.addItem.bind(this);
-    this.removeItem = this.removeItem.bind(this);
-    this.editItem = this.editItem.bind(this);
+    this.editField = this.editField.bind(this);
   }
-  addItem(event) {
-    event.preventDefault();
-    var itemArray = this.state.items;
-    var newItemInput = {
-      name: "t",
+  handleRowDel(items) {
+    var index = this.state.items.indexOf(items);
+    this.state.items.splice(index, 1);
+    this.setState(this.state.items);
+  };
+  handleAddEvent(evt) {
+    var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
+    var items = {
+      id: id,
+      name: "",
+      price: "0.00",
       description: "",
-      quantity: 1,
-      price: '0.25',
+      quantity: 1
+    }
+    this.state.items.push(items);
+    this.setState(this.state.items);
+  }
+  onItemizedItemEdit(evt) {
+    var item = {
+      id: evt.target.id,
+      name: evt.target.name,
+      value: evt.target.value
     };
-    itemArray.push(newItemInput);
-    this.setState({ items: itemArray });
-    console.log(this.state.items)
-  }
-  editItem(event) {
-     this.setState({ [event.target.name]: event.target.value });
-  }
-  removeItem(itemIndex) {
-    var itemArray = this.state.items.splice(itemIndex, 1);
-    this.setState( {items: itemArray });
-  }
+  var itemss = this.state.items.slice();
+  var newItems = itemss.map(function(items) {
+
+    for (var key in items) {
+      if (key == item.name && items.id == item.id) {
+        items[key] = item.value;
+
+      }
+    }
+    return items;
+  });
+    this.setState({itemss:newItems});
+  //  console.log(this.state.items);
+  };
+  editField = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
   openModal = (event) => {
     event.preventDefault()
     this.setState({ isOpen: true });
-    console.log(this.state)
   };
-  closeModal = (event) => this.setState({ isOpen: false });
+  closeModal = (event) => this.setState({
+     isOpen: false
+  });
   render() {
     return(
       <Form onSubmit={this.openModal}>
         <Row>
           <Col md={8} xl={9}>
-            <Card className="p-4 my-4">
+            <Card className="p-4 p-xl-5 my-3 my-xl-4">
               <div className="d-flex flex-row align-items-center justify-content-between mb-3">
                 <div>
                   <span className="fw-bold">Date:&nbsp;</span>
@@ -78,7 +98,7 @@ class InvoiceForm extends React.Component {
                 </div>
                 <div className="d-flex flex-row align-items-center">
                   <span className="fw-bold d-block me-2">Due Date:</span>
-                  <Form.Control type="date" value={this.state.dateOfIssue} name={"dateOfIssue"} onChange={(event)=>this.editItem(event)} style={{maxWidth: '150px'}} required/>
+                  <Form.Control type="date" value={this.state.dateOfIssue} name={"dateOfIssue"} onChange={(event)=>this.editField(event)} style={{maxWidth: '150px'}} required/>
                 </div>
               </div>
               <div className="w-100 text-left text-lg-center mt-5 mt-lg-0 mb-5 d-none">
@@ -88,22 +108,19 @@ class InvoiceForm extends React.Component {
               <Row className="mb-5">
                 <Col>
                   <Form.Label className="fw-bold">Bill to:</Form.Label>
-                  <Form.Control placeholder={"Email"} value={this.state.billToEmail} type="text" name="billToEmail" className="my-2" onChange={(event)=>this.editItem(event)} required/>
-                  <Form.Control placeholder={"Billing address"} value={this.state.billToAddress} type="text" name="billToAddress" className="my-2" onChange={(event)=>this.editItem(event)} required/>
-                  <Form.Control placeholder={"Who is this invoice to?"} rows={3} value={this.state.billTo} type="text" name="billTo" as="textarea" className="my-2" onChange={(event)=>this.editItem(event)} required/>
+                  <Form.Control placeholder={"Who is this invoice to?"} rows={3} value={this.state.billTo} type="text" name="billTo" className="my-2" onChange={(event)=>this.editField(event)} required/>
+                  <Form.Control placeholder={"Email address"} value={this.state.billToEmail} type="email" name="billToEmail" className="my-2" onChange={(event)=>this.editField(event)} required/>
+                  <Form.Control placeholder={"Billing address"} value={this.state.billToAddress} type="text" name="billToAddress" className="my-2" onChange={(event)=>this.editField(event)} required/>
                 </Col>
-                  <Col>
-                    <Form.Label className="fw-bold">Bill from:</Form.Label>
-                    <Form.Control placeholder={"Email"} value={this.state.billFromEmail} type="text" name="billFromEmail" className="my-2" onChange={(event)=>this.editItem(event)} required/>
-                    <Form.Control placeholder={"Billing address"} value={this.state.billFromAddress} type="text" name="billFromAddress" className="my-2" onChange={(event)=>this.editItem(event)} required/>
-                    <Form.Control placeholder={"Who is this invoice from?"} rows={3} value={this.state.billFrom} type="text" name="billFrom" as="textarea" className="my-2" onChange={(event)=>this.editItem(event)} required/>
-                  </Col>
+                <Col>
+                  <Form.Label className="fw-bold">Bill from:</Form.Label>
+                  <Form.Control placeholder={"Who is this invoice from?"} rows={3} value={this.state.billFrom} type="text" name="billFrom" className="my-2" onChange={(event)=>this.editField(event)} required/>
+                  <Form.Control placeholder={"Email address"} value={this.state.billFromEmail} type="email" name="billFromEmail" className="my-2" onChange={(event)=>this.editField(event)} required/>
+                  <Form.Control placeholder={"Billing address"} value={this.state.billFromAddress} type="text" name="billFromAddress" className="my-2" onChange={(event)=>this.editField(event)} required/>
+                </Col>
               </Row>
-              <InvoiceItem items={this.state.items} removeItem={this.removeItem.bind(this)} onChange={this.editItem.bind(this)}/>
-              <Row>
-                <Col lg={6}>
-                  <Button className="fw-bold" onClick={this.addItem}>Add Item</Button>
-                </Col>
+              <InvoiceItem onItemizedItemEdit={this.onItemizedItemEdit.bind(this)} onRowAdd={this.handleAddEvent.bind(this)} onRowDel={this.handleRowDel.bind(this)} items={this.state.items}/>
+              <Row className="mt-4 justify-content-end">
                 <Col lg={6} >
                   <div className="d-flex flex-row align-items-start justify-content-between">
                     <span className="fw-bold">Subtotal: </span>
@@ -120,13 +137,13 @@ class InvoiceForm extends React.Component {
                   </div>
                 </Col>
               </Row>
-              <hr className="my-5"/>
+              <hr className="my-4"/>
               <Form.Label className="fw-bold">Notes:</Form.Label>
-              <Form.Control placeholder="Thanks for your business!" as="textarea" rows={1}/>
+              <Form.Control placeholder="Thanks for your business!" as="textarea" className="my-2" rows={2}/>
             </Card>
           </Col>
           <Col md={4} xl={3}>
-            <div className="sticky-top pt-md-4">
+            <div className="sticky-top pt-md-3 pt-xl-4">
               <Button variant="primary" type="submit" className="d-block w-100">Review Invoice</Button>
               <InvoiceModal showModal={this.state.isOpen} closeModal={this.closeModal} info={this.state} items={this.state.items}></InvoiceModal>
             </div>
