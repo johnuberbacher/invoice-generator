@@ -52,7 +52,7 @@ class InvoiceModal extends React.Component {
               </div>
               <div className="text-end ms-4">
                 <h6 className="fw-bold mt-1 mb-2">Amount&nbsp;Due:</h6>
-                <h5 className="fw-bold text-secondary"> {this.props.currency}{this.props.info.total||'0.00'}</h5>
+                <h5 className="fw-bold text-secondary"> {this.props.currency} {this.props.info.total||'0.00'}</h5>
               </div>
             </div>
             <div className="p-4">
@@ -89,8 +89,8 @@ class InvoiceModal extends React.Component {
                         <td>
                           {item.name} - {item.description}
                         </td>
-                        <td style={{width: '100px'}}>{this.props.currency}{item.price}</td>
-                        <td style={{width: '100px'}}>{this.props.currency}{item.price * item.quantity}</td>
+                        <td style={{width: '100px'}}>{this.props.currency} {item.price}</td>
+                        <td style={{width: '100px'}}>{this.props.currency} {item.price * item.quantity}</td>
                       </tr>
                     );
                   })}
@@ -106,12 +106,12 @@ class InvoiceModal extends React.Component {
                   <tr className="text-right">
                     <td></td>
                     <td className="fw-bold" style={{width: '100px'}}>TAX</td>
-                    <td className="text-right" style={{width: '100px'}}>{this.props.currency}0.00</td>
+                    <td className="text-right" style={{width: '100px'}}>{this.props.currency} 0.00</td>
                   </tr>
                     <tr>
                       <td></td>
                       <td className="fw-bold" style={{width: '100px'}}>TOTAL</td>
-                      <td align="right" style={{width: '100px'}}>{this.props.currency}0.00</td>
+                      <td align="right" style={{width: '100px'}}>{this.props.currency} 0.00</td>
                     </tr>
                 </tbody>
               </Table>

@@ -16,7 +16,7 @@ npm start
 ### To-Do
 - [x] Finish parsing data into Preview Modal
 
-- [ ] Currency Picker/Exchange Rates
+- [x] Currency Picker/Exchange Rates
 
 - [ ] Calculate Tax based on currency
 

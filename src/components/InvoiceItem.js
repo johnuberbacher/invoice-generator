@@ -21,7 +21,7 @@ class ItemizedTable extends React.Component {
             <tr>
               <th>ITEM</th>
               <th>QTY</th>
-              <th>PRICE</th>
+              <th>PRICE/RATE</th>
               <th className="text-center">ACTION</th>
             </tr>
           </thead>

@@ -136,16 +136,16 @@ class InvoiceForm extends React.Component {
                 <Col lg={6} >
                   <div className="d-flex flex-row align-items-start justify-content-between">
                     <span className="fw-bold">Subtotal: </span>
-                    <span>{this.state.currency}0.00</span>
+                    <span>{this.state.currency} 0.00</span>
                   </div>
                   <div className="d-flex flex-row align-items-start justify-content-between mt-2">
                     <span className="fw-bold">Discount: </span>
-                    <span>{this.state.currency}0.00</span>
+                    <span>{this.state.currency} 0.00</span>
                   </div>
                   <hr/>
                   <div className="d-flex flex-row align-items-start justify-content-between" style={{fontSize: '1.125rem'}}>
                     <span className="fw-bold">Total: </span>
-                    <span className="fw-bold">{this.state.currency}0.00</span>
+                    <span className="fw-bold">{this.state.currency} 0.00</span>
                   </div>
                 </Col>
               </Row>
@@ -163,9 +163,9 @@ class InvoiceForm extends React.Component {
                   <option value="$">USD (United States Dollar)</option>
                   <option value="£">GBP (British Pound Sterling)</option>
                   <option value="¥">JPY (Japanese Yen)</option>
-                  <option value="CAD$">CAD (Canadian Dollar)</option>
-                  <option value="AUD$">AUD (Australian Dollar)</option>
-                  <option value="SGD$">SGD (Signapore Dollar)</option>
+                  <option value="$">CAD (Canadian Dollar)</option>
+                  <option value="$">AUD (Australian Dollar)</option>
+                  <option value="$">SGD (Signapore Dollar)</option>
                   <option value="¥">CNY (Chinese Renminbi)</option>
                   <option value="₿">BTC (Bitcoin)</option>
                 </Form.Select>
