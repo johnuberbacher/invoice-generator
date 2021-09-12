@@ -3,6 +3,8 @@
 
 <img src="https://i.imgur.com/155gYTq.png" style="max-width: 100px; width: 100%; height: auto;">
 
+An Invoice creator project built with React. Uses [jspdf-react](https://www.npmjs.com/package/jspdf-react) to capture the data from the modal and covert it from canvas -> pdf.
+
 ### Installation
 
 ```
