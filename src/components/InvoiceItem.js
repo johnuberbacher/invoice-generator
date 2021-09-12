@@ -1,18 +1,20 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { BiTrash } from "react-icons/bi";
 import EditableField from './EditableField';
 
-class ItemizedTable extends React.Component {
+class InvoiceItem extends React.Component {
   render() {
     var onItemizedItemEdit = this.props.onItemizedItemEdit;
     var currency = this.props.currency;
     var rowDel = this.props.onRowDel;
+    var updateSubtotal = this.props.updateSubtotal;
     var itemTable = this.props.items.map(function(item) {
-      return (<ItemRow onItemizedItemEdit={onItemizedItemEdit} item={item} onDelEvent={rowDel.bind(this)} key={item.id} currency={currency}/>)
+      return (
+        <ItemRow onItemizedItemEdit={onItemizedItemEdit} item={item} onDelEvent={rowDel.bind(this)} key={item.id} updateSubtotal={updateSubtotal} currency={currency}/>
+      )
     });
     return (
       <div>
@@ -51,7 +53,7 @@ class ItemRow extends React.Component {
             name: "name",
             placeholder: "Item name",
             value: this.props.item.name,
-            id: this.props.item.id
+            id: this.props.item.id,
           }}/>
           <EditableField
             onItemizedItemEdit={this.props.onItemizedItemEdit}
@@ -72,7 +74,7 @@ class ItemRow extends React.Component {
             min: 1,
             step: "1",
             value: this.props.item.quantity,
-            id: this.props.item.id
+            id: this.props.item.id,
           }}/>
         </td>
         <td style={{minWidth: '110px'}}>
@@ -87,7 +89,7 @@ class ItemRow extends React.Component {
             presicion: 2,
             textAlign: "text-end",
             value: this.props.item.price,
-            id: this.props.item.id
+            id: this.props.item.id,
           }}/>
         </td>
         <td className="text-center" style={{minWidth: '50px'}}>
@@ -100,4 +102,4 @@ class ItemRow extends React.Component {
 
 }
 
-export default ItemizedTable;
+export default InvoiceItem;

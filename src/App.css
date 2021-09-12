@@ -73,10 +73,13 @@ hr {
 }
 
 .form-control {
-  background: #f5f7f9!important;
+  background: #f5f7f9;
   font-weight: 400;
   padding: .5rem .75rem;
   border: none
+}
+.form-control:hover {
+  background: #f5f7f9;
 }
 .form-control::placeholder,
 .form-control::-ms-input-placeholder,
