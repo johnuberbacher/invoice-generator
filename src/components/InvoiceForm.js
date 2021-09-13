@@ -27,8 +27,6 @@ class InvoiceForm extends React.Component {
       subTotal: '0.00',
       taxRate: '0.0',
       taxAmmount: '0.00',
-      total: '0.00',
-      taxRate: '0.0',
       taxAmmount: '0.00',
       discountRate: '0.0',
       discountAmmount: '0.00',
