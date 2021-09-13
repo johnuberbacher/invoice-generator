@@ -31,7 +31,6 @@ class InvoiceModal extends React.Component {
     super(props);
   }
   render() {
-    console.log(this.props.info.notes)
     return(
       <div>
         <Modal show={this.props.showModal} onHide={this.props.closeModal} size="lg" centered>
@@ -116,7 +115,7 @@ class InvoiceModal extends React.Component {
                     </tr>
                 </tbody>
               </Table>
-              { this.props.info.notes.trim() !== "" && (
+              {this.props.info.notes.trim() !== "" && (
                 <div className="bg-light py-3 px-4 rounded">
                   {this.props.info.notes}
                 </div>

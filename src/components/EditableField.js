@@ -28,7 +28,7 @@ class EditableField extends React.Component {
           presicion={this.props.cellData.presicion}
           aria-label={this.props.cellData.name}
           onChange={this.props.onItemizedItemEdit}
-          required 
+          required
         />
       </InputGroup>
     );

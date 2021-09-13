@@ -10,10 +10,9 @@ class InvoiceItem extends React.Component {
     var onItemizedItemEdit = this.props.onItemizedItemEdit;
     var currency = this.props.currency;
     var rowDel = this.props.onRowDel;
-    var updateSubtotal = this.props.updateSubtotal;
     var itemTable = this.props.items.map(function(item) {
       return (
-        <ItemRow onItemizedItemEdit={onItemizedItemEdit} item={item} onDelEvent={rowDel.bind(this)} key={item.id} updateSubtotal={updateSubtotal} currency={currency}/>
+        <ItemRow onItemizedItemEdit={onItemizedItemEdit} item={item} onDelEvent={rowDel.bind(this)} key={item.id} currency={currency}/>
       )
     });
     return (
