@@ -27,7 +27,6 @@ class InvoiceForm extends React.Component {
       subTotal: '0.00',
       taxRate: '0.0',
       taxAmmount: '0.00',
-      taxAmmount: '0.00',
       discountRate: '0.0',
       discountAmmount: '0.00',
     };
@@ -65,7 +64,6 @@ class InvoiceForm extends React.Component {
   handleCalculateTotal() {
     var items = this.state.items;
     var subTotal = 0.0;
-    var discount = this.state.discount;
     items.map(function(items) {
       subTotal = parseFloat((subTotal + (parseFloat(items.price) * parseInt(items.quantity)))).toFixed(2)
     });
@@ -204,7 +202,7 @@ class InvoiceForm extends React.Component {
                   </div>
                   <div className="d-flex flex-row align-items-start justify-content-between mt-2">
                     <span className="fw-bold">Discount:</span>
-                    <span>{this.state.currency} {this.state.discountAmmount||0.0}</span>
+                    <span>{this.state.currency} {this.state.discountAmmount||0.0} <span className="small ">({this.state.discountRate||0.0}%)</span></span>
                   </div>
                   <div className="d-flex flex-row align-items-start justify-content-between mt-2">
                     <span className="fw-bold">Tax: </span>
