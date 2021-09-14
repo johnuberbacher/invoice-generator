@@ -11,16 +11,6 @@ html,
 .App {
   min-height: 100vh
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
 .btn {
   font-size: 0.9rem;
   font-weight: 500;
