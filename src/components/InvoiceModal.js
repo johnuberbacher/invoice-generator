@@ -70,8 +70,8 @@ class InvoiceModal extends React.Component {
                   <tr>
                     <th>QTY</th>
                     <th>DESCRIPTION</th>
-                    <th>PRICE</th>
-                    <th>AMOUNT</th>
+                    <th className="text-end">PRICE</th>
+                    <th className="text-end">AMOUNT</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -84,8 +84,8 @@ class InvoiceModal extends React.Component {
                         <td>
                           {item.name} - {item.description}
                         </td>
-                        <td style={{width: '100px'}}>{this.props.currency} {item.price}</td>
-                        <td style={{width: '100px'}}>{this.props.currency} {item.price * item.quantity}</td>
+                        <td className="text-end" style={{width: '100px'}}>{this.props.currency} {item.price}</td>
+                        <td className="text-end" style={{width: '100px'}}>{this.props.currency} {item.price * item.quantity}</td>
                       </tr>
                     );
                   })}
@@ -98,28 +98,32 @@ class InvoiceModal extends React.Component {
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                   </tr>
-                  <tr className="text-right">
+                  <tr className="text-end">
                     <td></td>
                     <td className="fw-bold" style={{width: '100px'}}>SUBTOTAL</td>
-                    <td className="text-right" style={{width: '100px'}}>{this.props.currency} {this.props.subTotal}</td>
+                    <td className="text-end" style={{width: '100px'}}>{this.props.currency} {this.props.subTotal}</td>
                   </tr>
-                  <tr className="text-right">
+                  <tr className="text-end">
                     <td></td>
                     <td className="fw-bold" style={{width: '100px'}}>TAX</td>
-                    <td className="text-right" style={{width: '100px'}}>{this.props.currency} 0.00</td>
+                    <td className="text-end" style={{width: '100px'}}>{this.props.currency} {this.props.taxAmmount}</td>
                   </tr>
-                    <tr>
-                      <td></td>
-                      <td className="fw-bold" style={{width: '100px'}}>TOTAL</td>
-                      <td align="right" style={{width: '100px'}}>{this.props.currency} {this.props.total}</td>
-                    </tr>
+                  <tr className="text-end">
+                    <td></td>
+                    <td className="fw-bold" style={{width: '100px'}}>DISCOUNT</td>
+                    <td className="text-end" style={{width: '100px'}}>{this.props.currency} {this.props.discountAmmount}</td>
+                  </tr>
+                  <tr className="text-end">
+                    <td></td>
+                    <td className="fw-bold" style={{width: '100px'}}>TOTAL</td>
+                    <td className="text-end" style={{width: '100px'}}>{this.props.currency} {this.props.total}</td>
+                  </tr>
                 </tbody>
               </Table>
-              {this.props.info.notes.trim() !== "" && (
+              {this.props.info.notes &&
                 <div className="bg-light py-3 px-4 rounded">
                   {this.props.info.notes}
-                </div>
-              )}
+                </div>}
             </div>
           </div>
           <div className="pb-4 px-4">

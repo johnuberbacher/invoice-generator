@@ -76,7 +76,7 @@ class ItemRow extends React.Component {
             id: this.props.item.id,
           }}/>
         </td>
-        <td style={{minWidth: '110px'}}>
+        <td style={{minWidth: '130px'}}>
           <EditableField
             onItemizedItemEdit={this.props.onItemizedItemEdit}
             cellData={{
