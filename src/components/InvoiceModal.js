@@ -39,10 +39,7 @@ class InvoiceModal extends React.Component {
               <div className="w-100">
                 <h4 className="fw-bold my-2">{this.props.info.billFrom||'John Uberbacher'}</h4>
                 <h6 className="fw-bold text-secondary mb-1">
-                  {this.props.info.billFromAddress||''}
-                </h6>
-                <h6 className="fw-bold text-secondary mb-0">
-                {this.props.info.billFromEmail||''}
+                  Invoice #: {this.props.info.invoiceNumber||''}
                 </h6>
               </div>
               <div className="text-end ms-4">
@@ -52,15 +49,19 @@ class InvoiceModal extends React.Component {
             </div>
             <div className="p-4">
               <Row className="mb-4">
-                <Col xs={8}>
+                <Col md={4}>
                   <div className="fw-bold">Billed to:</div>
                   <div>{this.props.info.billTo||''}</div>
                   <div>{this.props.info.billToAddress||''}</div>
                   <div>{this.props.info.billToEmail||''}</div>
                 </Col>
-                <Col >
-                  <div className="fw-bold">Invoice Number:</div>
-                  <div>{this.props.info.dateOfIssue||''}</div>
+                <Col md={4}>
+                  <div className="fw-bold">Billed From:</div>
+                  <div>{this.props.info.billFrom||''}</div>
+                  <div>{this.props.info.billFromAddress||''}</div>
+                  <div>{this.props.info.billFromEmail||''}</div>
+                </Col>
+                <Col md={4}>
                   <div className="fw-bold mt-2">Date Of Issue:</div>
                   <div>{this.props.info.dateOfIssue||''}</div>
                 </Col>
