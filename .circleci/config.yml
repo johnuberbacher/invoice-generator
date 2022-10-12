@@ -2,23 +2,16 @@ version: 2.1
 orbs:
   cypress: cypress-io/cypress@2.2.0
   node: circleci/node@5.0.3
-jobs:
-  build-and-test:
-    docker:
-      - image: 'cimg/python:3.10'
-    steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: npm
-      - run:
-          command: npm run test
-          name: Run tests
-      - run:
-          command: npm run build
-          name: Build app
 workflows:
-  build-and-test:
+  build:
     jobs:
-    - cypress/run:
-        record: true
-          - build-and-test
+      - cypress/install:
+          build: 'npm run build' # run a custom app build step
+      - cypress/run:
+          requires:
+            - cypress/install
+          record: true # record results on Cypress Dashboard
+          parallel: true # split all specs across machines
+          parallelism: 4 # use 4 CircleCI machines to finish quickly
+          group: 'all tests' # name this group "all tests" on the dashboard
+          start: 'npm start' # start server before running tests
