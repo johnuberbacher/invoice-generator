@@ -97,7 +97,7 @@ class InvoiceForm extends React.Component {
     var items = this.state.items.slice();
     var newItems = items.map(function(items) {
       for (var key in items) {
-        if (key == item.name && items.id == item.id) {
+        if (key === item.name && items.id === item.id) {
           items[key] = item.value;
         }
       }
@@ -127,9 +127,9 @@ class InvoiceForm extends React.Component {
         <Col md={8} lg={9}>
           <Card className="p-4 p-xl-5 my-3 my-xl-4">
             <div className="d-flex flex-row align-items-start justify-content-between mb-3">
-              <div class="d-flex flex-column">
+              <div className="d-flex flex-column">
                 <div className="d-flex flex-column">
-                  <div class="mb-2">
+                  <div className="mb-2">
                     <span className="fw-bold">Current&nbsp;Date:&nbsp;</span>
                     <span className="current-date">{new Date().toLocaleDateString()}</span>
                   </div>
