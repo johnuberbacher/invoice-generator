@@ -2,18 +2,30 @@
 //add a new button with lable "Add Invoice" below "Review Invoice" button.
 //when the user clicks on the "Add Invoice" button, a new table with columns "billFrom" and "billTo" should be displayed below Notes section.
 
-import React from "react";
+//1. change invoices data text style 
+//2. don't repeat billFrom and billTo 
+//3. add space after add in "Add Invoice" button text. 
 
-function AddInvoice() {
-    const [Invoices, setInvoices] = React.useState([{billFrom:'manasa',billTo:'Abhilash' }, {billFrom:'santosh',billTo:'sandeep'}])
-    const invoicesFrom = Invoices.map((Invoices) => <li key={0}>{Invoices.billFrom}</li>)
-    const invoocesTo = Invoices.map((Invoices) => <li key={0}>{Invoices.billTo}</li>)
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+
+function AddInvoice(props) {
+    // const [Invoices, setInvoices] = React.useState([{billFrom:'manasa' }, {billFrom:'santosh'}])
+    const invoicesFrom = <li key={0}>{props.childBillFrom}</li>
+    const invoocesTo =  <li key={0}>{props.childBillTo}</li>
     
     return (
         <div>
-            <h2>Invoices Data</h2>
-            <td>Bill From</td>{invoicesFrom}
-            <td>Bill To</td>{invoocesTo}
+        <Form.Label className="fw-bold">Invoices Data</Form.Label> <br/>
+            <Row>
+                <Col><td>Bill From</td>{invoicesFrom}</Col>
+                <Col><td>Bill To</td>{invoocesTo}</Col>
+            </Row>
+            
         </div>
     )
 }

@@ -123,7 +123,8 @@ class InvoiceForm extends React.Component {
     this.setState({isOpen: true})
   };
   closeModal = (event) => this.setState({isOpen: false});
-  render() {
+  render() {    
+    const {billTo, billFrom} = this.state;
     return (<Form onSubmit={this.openModal}>
       <Row>
         <Col md={8} lg={9}>
@@ -202,9 +203,9 @@ class InvoiceForm extends React.Component {
             </Row>
             <hr className="my-4"/>
             <Form.Label className="fw-bold">Notes:</Form.Label>
-            <Form.Control placeholder="Thanks for your business!" name="notes" value={this.state.notes} onChange={(event) => this.editField(event)} as="textarea" className="my-2" rows={1}/>
-            {this.state.showAddedInvoice && <div><AddInvoice /> </div>} // commit it in git
-          </Card>
+            <Form.Control placeholder="Thanks for your business!" name="notes" value={this.state.notes} onChange={(event) => this.editField(event)} as="textarea" className="my-2" rows={1}/>           
+            {this.state.showAddedInvoice && <div><AddInvoice childBillTo={billTo} childBillFrom={billFrom}/> </div>}  
+            </Card>
         </Col>
         <Col md={4} lg={3}>
           <div className="sticky-top pt-md-3 pt-xl-4">
@@ -213,7 +214,7 @@ class InvoiceForm extends React.Component {
                 this.setState({
                   showAddedInvoice: true 
               })
-            }}>AddInvoice</Button>
+            }}>Add Invoice</Button><br/>
             <InvoiceModal showModal={this.state.isOpen} closeModal={this.closeModal} info={this.state} items={this.state.items} currency={this.state.currency} subTotal={this.state.subTotal} taxAmmount={this.state.taxAmmount} discountAmmount={this.state.discountAmmount} total={this.state.total}/>
             <Form.Group className="mb-3">
               <Form.Label className="fw-bold">Currency:</Form.Label>
