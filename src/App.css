@@ -44,7 +44,9 @@ html,
 hr {
   opacity: 0.1
 }
-
+table, tbody, tr, td {
+  border: 1px solid black;
+}
 .table th {
   border-top: 1px solid #0000001a;
   border-bottom: 1px solid #0000001a;

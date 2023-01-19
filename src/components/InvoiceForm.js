@@ -9,6 +9,7 @@ import InvoiceItem from './InvoiceItem';
 import InvoiceModal from './InvoiceModal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import AddInvoice from './AddInvoice';
+import FetchAPI from './ApiCall';
 
 class InvoiceForm extends React.Component {
   constructor(props) {
@@ -32,7 +33,8 @@ class InvoiceForm extends React.Component {
       taxAmmount: '0.00',
       discountRate: '',
       discountAmmount: '0.00',
-      showAddedInvoice: false
+      showAddedInvoice: false,
+      usersData: false
     };
     this.state.items = [
       {
@@ -205,7 +207,8 @@ class InvoiceForm extends React.Component {
             <Form.Label className="fw-bold">Notes:</Form.Label>
             <Form.Control placeholder="Thanks for your business!" name="notes" value={this.state.notes} onChange={(event) => this.editField(event)} as="textarea" className="my-2" rows={1}/>           
             {this.state.showAddedInvoice && <div><AddInvoice childBillTo={billTo} childBillFrom={billFrom}/> </div>}  
-            </Card>
+            {this.state.usersData && <div><FetchAPI /></div>}
+          </Card>
         </Col>
         <Col md={4} lg={3}>
           <div className="sticky-top pt-md-3 pt-xl-4">
@@ -215,6 +218,11 @@ class InvoiceForm extends React.Component {
                   showAddedInvoice: true 
               })
             }}>Add Invoice</Button><br/>
+            <Button variant="primary" type="submit" className="d-block w-100" onClick={() => {
+              this.setState({
+              usersData: true
+            })
+            }}>Users Data</Button>
             <InvoiceModal showModal={this.state.isOpen} closeModal={this.closeModal} info={this.state} items={this.state.items} currency={this.state.currency} subTotal={this.state.subTotal} taxAmmount={this.state.taxAmmount} discountAmmount={this.state.discountAmmount} total={this.state.total}/>
             <Form.Group className="mb-3">
               <Form.Label className="fw-bold">Currency:</Form.Label>
