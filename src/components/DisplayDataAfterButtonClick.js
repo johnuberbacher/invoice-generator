@@ -3,23 +3,34 @@ import React from 'react';
 // import './App.css';
 // import Container from 'react-bootstrap/Container';
 import InvoiceForm from './InvoiceForm';
-import ListPage from './listPage';
+// import ListPage from './listPage';
+import ApiCall from './ApiCall';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function DisplayDataAfterButtonClick() {
     const [button1, setButton1] = React.useState(false);
     const [button2, setButton2] = React.useState(false);
     return (
         <div className="App d-flex flex-column align-items-center justify-content-center w-100">
-            <button onClick={() => {
-                setButton1(true)
-                setButton2(false)
-            }}>New Invoice</button>
-            <button onClick={() => {
-                setButton2(true)
-                setButton1(false)
-            }}>Previous Invoice</button>
+            <Row>
+                <Col>
+                    <Button onClick={() => {
+                        setButton1(true)
+                        setButton2(false)
+                    }}>New Invoice</Button>
+                </Col>
+                <Col>
+                    <Button onClick={() => {
+                        setButton2(true)
+                        setButton1(false)
+                    }}>Users Data</Button>
+                </Col>
+            </Row>
             {button1 && <div><InvoiceForm /></div>}
-            {button2 && <div><ListPage /></div>}
+            {button2 && <div><ApiCall /></div>}
+            {/* {button2 && <div><ListPage /></div>} */}
             {/* <Container>
                 <InvoiceForm />
             </Container> */}
