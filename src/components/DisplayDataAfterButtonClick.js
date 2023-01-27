@@ -4,10 +4,11 @@ import React from 'react';
 // import Container from 'react-bootstrap/Container';
 import InvoiceForm from './InvoiceForm';
 // import ListPage from './listPage';
-import ApiCall from './ApiCall';
+// import ApiCall from './ApiCall';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import FilterUserData from './FilterUserData';
 
 function DisplayDataAfterButtonClick() {
     const [button1, setButton1] = React.useState(false);
@@ -29,7 +30,7 @@ function DisplayDataAfterButtonClick() {
                 </Col>
             </Row>
             {button1 && <div><InvoiceForm /></div>}
-            {button2 && <div><ApiCall /></div>}
+            {button2 && <div><FilterUserData /></div>}
             {/* {button2 && <div><ListPage /></div>} */}
             {/* <Container>
                 <InvoiceForm />
