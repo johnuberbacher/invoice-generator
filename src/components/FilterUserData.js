@@ -8,6 +8,7 @@ function UserData() {
   const [search, setSearch] = useState('');
   const [showUsers, setShowUsers] = useState(true);
   const [showFilteredUsers, setShowFilteredUsers] = useState(false);
+  // const [filterUsers, setFilterUsers] = useState([]);
   useEffect(() => {
     Axios.get("https://jsonplaceholder.typicode.com/users").then(
       response => setData(response.data)
@@ -39,9 +40,35 @@ function UserData() {
   }
   // console.log(search);
   // console.log(data);
-  let filterUsers = data.filter((array) => isSubstringPresent(array.name, search));
-  console.log(filterUsers)
 
+  // const keys = ['name', 'website', 'email', 'username', 'phone'];
+
+  // let filterUsers = data.filter((array) =>
+  //   keys.some((key) => isSubstringPresent(array[key].toLowerCase(), search.toLocaleLowerCase())))
+
+
+  let filteredUsersArr = [];
+  let filteredKeys = [];
+  for (let k = 0; k < data.length; k++) {
+    let keys = Object.keys(data[k]);
+    console.log(keys);
+    for (let j = 0; j < keys.length; j++) {
+      if (keys[j] === 'name' || keys[j] === 'website' || keys[j] === 'email' || keys[j] === 'username' || keys[j] === 'phone') {
+        filteredKeys.push(keys[j]);
+        console.log(filteredKeys);
+      }
+    }
+    for (let i = 0; i < filteredKeys.length; i++) {
+      console.log(data[k][filteredKeys[i]] + '  ' + search);
+      let filteredUser = isSubstringPresent(data[k][filteredKeys[i]].toLowerCase(), search.toLocaleLowerCase())
+      if (filteredUser) {
+        filteredUsersArr.push(data[k]);
+        break;
+
+      }
+    }
+    console.log(filteredUsersArr);
+  }
   return (
     <div className="App">
       <Form.Label className="fw-bold">Users Data</Form.Label> <br />
@@ -94,7 +121,7 @@ function UserData() {
           </tr>
         </thead>
         <tbody>
-          {filterUsers.map((userfltData, index) => {
+          {filteredUsersArr.map((userfltData, index) => {
             return (
               <tr key={index}>
                 <td>{userfltData.name}</td>
