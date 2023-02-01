@@ -16,8 +16,8 @@ html,
   font-weight: 500;
   padding: 0.66rem;
   border-radius: 0.5rem;
-  box-shadow: 0 .1rem .1rem rgba(0,0,0,.05)!important;
-  width: 100px;
+  box-shadow: 0 .1rem .1rem rgba(22, 97, 166, 0.05)!important;
+  width: 150px;
 }
 .App-link {
   color: #61dafb;
