@@ -9,9 +9,9 @@ function UserData() {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
   const [showUsers, setShowUsers] = useState(true);
-  const [showFilteredUsers, setShowFilteredUsers] = useState(false);
+  // const [showFilteredUsers, setShowFilteredUsers] = useState(false);
   const [showSortedUserNames, setShowSortedUserNames] = useState(false);
-  const [userNamesForSort, setuserNamesForSort] = useState([]);
+  const [usersForFilterAndSort, setUsersForFilterAndSort] = useState([]);
   // const [showSortedUserWebsites, setShowSortedUserWebsites] = useState(false);
   // const [showSortedUsersEmail, setShowSortedUsersEmail] = useState(false);
   // const [showSortedUsersUN, setShowSortedUsersUN] = useState(false);
@@ -61,33 +61,37 @@ function UserData() {
 
   let filteredUsersArr = [];
   let filteredKeys = [];
-  for (let k = 0; k < data.length; k++) {
-    let keys = Object.keys(data[k]);
-    console.log(keys);
-    for (let j = 0; j < keys.length; j++) {
-      if (keys[j] === 'name' || keys[j] === 'website' || keys[j] === 'email' || keys[j] === 'username' || keys[j] === 'phone') {
-        filteredKeys.push(keys[j]);
-        // console.log(filteredKeys);
+  function filterUsers() {
+    for (let k = 0; k < data.length; k++) {
+      let keys = Object.keys(data[k]);
+      console.log(keys);
+      for (let j = 0; j < keys.length; j++) {
+        if (keys[j] === 'name' || keys[j] === 'website' || keys[j] === 'email' || keys[j] === 'username' || keys[j] === 'phone') {
+          filteredKeys.push(keys[j]);
+          // console.log(filteredKeys);
+        }
       }
-    }
-    for (let i = 0; i < filteredKeys.length; i++) {
-      // console.log(data[k][filteredKeys[i]] + '  ' + search);
-      let filteredUser = isSubstringPresent(data[k][filteredKeys[i]].toLowerCase(), search.toLocaleLowerCase())
-      if (filteredUser) {
-        filteredUsersArr.push(data[k]);
-        break;
-
+      for (let i = 0; i < filteredKeys.length; i++) {
+        // console.log(data[k][filteredKeys[i]] + '  ' + search);
+        let filteredUser = isSubstringPresent(data[k][filteredKeys[i]].toLowerCase(), search.toLowerCase())
+        if (filteredUser) {
+          filteredUsersArr.push(data[k]);
+          break;
+        }
       }
+      console.log(filteredUsersArr);
+      setUsersForFilterAndSort(filteredUsersArr);
     }
-    // console.log(filteredUsersArr);
   }
+
+
   let usersDataForSort = [];
   for (let m = 0; m < data.length; m++) {
     usersDataForSort.push(data[m]);
   }
   console.log(usersDataForSort);
 
-  let arrUserNameForSort = function (arr, stg) {
+  let arrUserNameForSort = function () {
     let userName = usersDataForSort.sort((a, b) => {
       console.log('test print');
       if (a.name.toLowerCase() < b.name.toLowerCase()) {
@@ -96,16 +100,16 @@ function UserData() {
         return 0;
       }
     })
-    setuserNamesForSort(userName);
+    setUsersForFilterAndSort(userName);
   }
-  console.log(userNamesForSort);
+  console.log(usersForFilterAndSort);
 
   let usersWebsitesForSort = [];
   for (let n = 0; n < data.length; n++) {
     usersWebsitesForSort.push(data[n]);
   }
   // console.log(usersWebsitesForSort);
-  let sortedUserWebsites = function(arr,stg){
+  let sortedUserWebsites = function(){
     let website = usersWebsitesForSort.sort((a, b) => {
     if (a.website.toLowerCase() < b.website.toLowerCase()) {
       return -1;
@@ -113,9 +117,9 @@ function UserData() {
       return 0;
     }
   })
-  setuserNamesForSort(website);
+  setUsersForFilterAndSort(website);
 } 
-  console.log(userNamesForSort);
+  console.log(usersForFilterAndSort);
 
   let usersEmailForSort = [];
   for (let j = 0; j < data.length; j++) {
@@ -123,7 +127,7 @@ function UserData() {
   }
   // console.log(usersEmailForSort);
 
-  let sortedUserEmail = function(arr, stg) {
+  let sortedUserEmail = function() {
     let email = usersEmailForSort.sort((a, b) => {
       console.log('test print');
       if (a.email.toLowerCase() < b.email.toLowerCase()) {
@@ -132,7 +136,7 @@ function UserData() {
         return 0;
       }
     })    
-  setuserNamesForSort(email);
+    setUsersForFilterAndSort(email);
   }
 
   let usersUNForSort = [];
@@ -141,7 +145,7 @@ function UserData() {
   }
   // console.log(usersUNForSort);
   
-  let sortedUserUN = function(arr,stg) {
+  let sortedUserUN = function() {
     let userName = usersUNForSort.sort((a, b) => {
       console.log('test print');
       if (a.username.toLowerCase() < b.username.toLowerCase()) {
@@ -150,9 +154,9 @@ function UserData() {
         return 0;
       }
     })
-    setuserNamesForSort(userName);
+    setUsersForFilterAndSort(userName);
   }
-  console.log(userNamesForSort);
+  console.log(usersForFilterAndSort);
 
   // let usersPhoneForSort = [];
   // for (let p = 0; p < data.length; p++) {
@@ -171,16 +175,18 @@ function UserData() {
       <Form.Label className="fw-bold">Users Data</Form.Label> <br />
       <h5>Search Data Here: </h5>
       <input type="text" value={search}
-        onChange={(e) => setSearch(e.target.value)} onKeyUp={() => {
+        onChange={(e) => setSearch(e.target.value)} onKeyUp={() => { 
+          filterUsers(setShowSortedUserNames(true), setShowUsers(false))
           if (searchLength === 0) {
-            setShowFilteredUsers(false)
+            // setShowFilteredUsers(false)
             setShowUsers(true)
+            setShowSortedUserNames(false)
           }
           if (searchLength > 0) {
-            setShowFilteredUsers(true)
+            // setShowFilteredUsers(true)
             setShowUsers(false)
             // setShowSortedUserWebsites(false)
-            setShowSortedUserNames(false)
+            setShowSortedUserNames(true)
             // setShowSortedUsersUN(false)
             // setShowSortedUsersPhone(false)
             // setShowSortedUserWebsites(false)
@@ -193,7 +199,7 @@ function UserData() {
             arrUserNameForSort(usersDataForSort, 'name')
             console.log('sort button clicked');
             setShowSortedUserNames(true)
-            setShowFilteredUsers(false)
+            // setShowFilteredUsers(false)
             setShowUsers(false)
             // setShowSortedUserWebsites(false)
             // setShowSortedUsersUN(false)
@@ -204,7 +210,7 @@ function UserData() {
           <button onClick={() => {
             sortedUserWebsites(usersDataForSort, 'website')
             setShowSortedUserNames(true)
-            setShowFilteredUsers(false)
+            // setShowFilteredUsers(false)
             setShowUsers(false)
             // setShowFilteredUsers(false)
             // setShowUsers(false)
@@ -214,7 +220,7 @@ function UserData() {
         <Col><button onClick={() => {
             sortedUserEmail(usersDataForSort, 'email')
             setShowSortedUserNames(true)
-            setShowFilteredUsers(false)
+            // setShowFilteredUsers(false)
             setShowUsers(false)
           // setShowFilteredUsers(false)
           // setShowUsers(false)
@@ -224,7 +230,7 @@ function UserData() {
         <Col><button onClick={() => {
             sortedUserUN(usersDataForSort, 'username')
             setShowSortedUserNames(true)
-            setShowFilteredUsers(false)
+            // setShowFilteredUsers(false)
             setShowUsers(false)
           // setShowSortedUserNames(false)
           // setShowFilteredUsers(false)
@@ -258,7 +264,7 @@ function UserData() {
         </tbody>
       </table>
       }
-      {showFilteredUsers && <table className="table2">
+      {/* {showFilteredUsers && <table className="table2">
         <thead>
           <tr>
             <td >Name</td>
@@ -282,7 +288,7 @@ function UserData() {
           })}
         </tbody>
       </table>
-      }
+      } */}
       {showSortedUserNames && <table className="table2">
         <thead>
           <tr>
@@ -294,7 +300,7 @@ function UserData() {
           </tr>
         </thead>
         <tbody>
-          {userNamesForSort.map((userfltData, index) => {
+          {usersForFilterAndSort.map((userfltData, index) => {
             return (
               <tr key={index}>
                 <td>{userfltData.name}</td>
