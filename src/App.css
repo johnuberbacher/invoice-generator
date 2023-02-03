@@ -45,10 +45,10 @@ html,
 hr {
   opacity: 0.1
 }
-/* thead{
+thead{
   font-style: italic;
   font-weight: bold;
-} */
+}
 table, tbody, tr, td {
   border: 1px solid black;
 }
