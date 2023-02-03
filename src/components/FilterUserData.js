@@ -91,7 +91,7 @@ function UserData() {
   }
   console.log(usersDataForSort);
 
-  let sortUsers = function (data, key) {
+  let sortUsersAc = function (data, key) {
     let usersDataAfterSort = [];
     console.log('test print');
     if (key === 'name') {
@@ -138,6 +138,51 @@ function UserData() {
   }
   console.log(usersForFilterAndSort);
 
+  let sortUsersDc = function (data, key) {
+    let usersDataAfterSort = [];
+    console.log('test print');
+    if (key === 'name') {
+      usersDataAfterSort = data.sort((a, b) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return -1;
+        } else {
+          return 0;
+        }
+      })
+    }
+    else if (key === 'website') {
+      usersDataAfterSort = data.sort((a, b) => {
+        if (a.website.toLowerCase() > b.website.toLowerCase()) {
+          return -1;
+        } else {
+          return 0;
+        }
+      })
+    }
+    else if (key === 'email') {
+      usersDataAfterSort = data.sort((a, b) => {
+        if (a.email.toLowerCase() > b.email.toLowerCase()) {
+          return -1;
+        } else {
+          return 0;
+        }
+      })
+    }
+    else if (key === 'username') {
+      usersDataAfterSort = data.sort((a, b) => {
+        if (a.username.toLowerCase() > b.username.toLowerCase()) {
+          return -1;
+        } else {
+          return 0;
+        }
+      })
+    }
+    else {
+      return 0;
+    }
+    console.log(usersDataAfterSort);
+    setUsersForFilterAndSort(usersDataAfterSort);
+  }
   //   let arrUserNameForSort = function () {
   //     let userName = usersDataForSort.sort((a, b) => {
   //       console.log('test print');
@@ -237,27 +282,52 @@ function UserData() {
       <Row>
         <Col>
           <button onClick={() => {
-            sortUsers(usersDataForSort, 'name')
+            sortUsersAc(usersDataForSort, 'name')
             console.log('sort button clicked');
             setShowSortedUserNames(true)
             setShowUsers(false)
-          }}>Sort Tbl Names</button></Col>
+          }}>Sort by Names Ac</button></Col>
         <Col>
           <button onClick={() => {
-            sortUsers(usersDataForSort, 'website')
+            sortUsersAc(usersDataForSort, 'website')
             setShowSortedUserNames(true)
             setShowUsers(false)
-          }}>Sort Tbl website</button></Col>
+          }}>Sort By website Ac</button></Col>
         <Col><button onClick={() => {
-          sortUsers(usersDataForSort, 'email')
+          sortUsersAc(usersDataForSort, 'email')
           setShowSortedUserNames(true)
           setShowUsers(false)
-        }}>Sort User Email</button></Col>
+        }}>Sort By Email Ac</button></Col>
         <Col><button onClick={() => {
-          sortUsers(usersDataForSort, 'username')
+          sortUsersAc(usersDataForSort, 'username')
           setShowSortedUserNames(true)
           setShowUsers(false)
-        }}>Sort User-Name</button></Col>
+        }}>Sort By User-Name</button></Col>
+      </Row><br />
+      <Row>
+        <Col>
+          <button onClick={() => {
+            sortUsersDc(usersDataForSort, 'name')
+            console.log('sort button clicked');
+            setShowSortedUserNames(true)
+            setShowUsers(false)
+          }}>Sort by Names Dc</button></Col>
+        <Col>
+          <button onClick={() => {
+            sortUsersDc(usersDataForSort, 'website')
+            setShowSortedUserNames(true)
+            setShowUsers(false)
+          }}>Sort by website Dc</button></Col>
+        <Col><button onClick={() => {
+          sortUsersDc(usersDataForSort, 'email')
+          setShowSortedUserNames(true)
+          setShowUsers(false)
+        }}>Sort By Email Dc</button></Col>
+        <Col><button onClick={() => {
+          sortUsersDc(usersDataForSort, 'username')
+          setShowSortedUserNames(true)
+          setShowUsers(false)
+        }}>Sort By User-Name</button></Col>
       </Row><br />
       {showUsers && <table className="table1">
         <thead>
