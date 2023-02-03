@@ -91,72 +91,119 @@ function UserData() {
   }
   console.log(usersDataForSort);
 
-  let arrUserNameForSort = function () {
-    let userName = usersDataForSort.sort((a, b) => {
-      console.log('test print');
-      if (a.name.toLowerCase() < b.name.toLowerCase()) {
-        return -1;
-      } else {
-        return 0;
-      }
-    })
-    setUsersForFilterAndSort(userName);
-  }
-  console.log(usersForFilterAndSort);
-
-  let usersWebsitesForSort = [];
-  for (let n = 0; n < data.length; n++) {
-    usersWebsitesForSort.push(data[n]);
-  }
-  // console.log(usersWebsitesForSort);
-  let sortedUserWebsites = function(){
-    let website = usersWebsitesForSort.sort((a, b) => {
-    if (a.website.toLowerCase() < b.website.toLowerCase()) {
-      return -1;
-    } else {
+  let sortUsers = function (data, key) {
+    let usersDataAfterSort = [];
+    console.log('test print');
+    if (key === 'name') {
+      usersDataAfterSort = data.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1;
+        } else {
+          return 0;
+        }
+      })
+    }
+    else if (key === 'website') {
+      usersDataAfterSort = data.sort((a, b) => {
+        if (a.website.toLowerCase() < b.website.toLowerCase()) {
+          return -1;
+        } else {
+          return 0;
+        }
+      })
+    }
+    else if (key === 'email') {
+      usersDataAfterSort = data.sort((a, b) => {
+        if (a.email.toLowerCase() < b.email.toLowerCase()) {
+          return -1;
+        } else {
+          return 0;
+        }
+      })
+    }
+    else if (key === 'username') {
+      usersDataAfterSort = data.sort((a, b) => {
+        if (a.username.toLowerCase() < b.username.toLowerCase()) {
+          return -1;
+        } else {
+          return 0;
+        }
+      })
+    }
+    else {
       return 0;
     }
-  })
-  setUsersForFilterAndSort(website);
-} 
-  console.log(usersForFilterAndSort);
-
-  let usersEmailForSort = [];
-  for (let j = 0; j < data.length; j++) {
-    usersEmailForSort.push(data[j]);
-  }
-  // console.log(usersEmailForSort);
-
-  let sortedUserEmail = function() {
-    let email = usersEmailForSort.sort((a, b) => {
-      console.log('test print');
-      if (a.email.toLowerCase() < b.email.toLowerCase()) {
-        return -1;
-      } else {
-        return 0;
-      }
-    })    
-    setUsersForFilterAndSort(email);
-  }
-
-  let usersUNForSort = [];
-  for (let k = 0; k < data.length; k++) {
-    usersUNForSort.push(data[k]);
-  }
-  // console.log(usersUNForSort);
-  
-  let sortedUserUN = function() {
-    let userName = usersUNForSort.sort((a, b) => {
-      console.log('test print');
-      if (a.username.toLowerCase() < b.username.toLowerCase()) {
-        return -1;
-      } else {
-        return 0;
-      }
-    })
-    setUsersForFilterAndSort(userName);
+    console.log(usersDataAfterSort);
+    setUsersForFilterAndSort(usersDataAfterSort);
   }
   console.log(usersForFilterAndSort);
+
+  //   let arrUserNameForSort = function () {
+  //     let userName = usersDataForSort.sort((a, b) => {
+  //       console.log('test print');
+  //       if (a.name.toLowerCase() < b.name.toLowerCase()) {
+  //         return -1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     })
+  //     setUsersForFilterAndSort(userName);
+  //   }
+  //   console.log(usersForFilterAndSort);
+
+  //   let usersWebsitesForSort = [];
+  //   for (let n = 0; n < data.length; n++) {
+  //     usersWebsitesForSort.push(data[n]);
+  //   }
+  //   // console.log(usersWebsitesForSort);
+  //   let sortedUserWebsites = function(){
+  //     let website = usersWebsitesForSort.sort((a, b) => {
+  //     if (a.website.toLowerCase() < b.website.toLowerCase()) {
+  //       return -1;
+  //     } else {
+  //       return 0;
+  //     }
+  //   })
+  //   setUsersForFilterAndSort(website);
+  // } 
+  //   console.log(usersForFilterAndSort);
+
+  //   let usersEmailForSort = [];
+  //   for (let j = 0; j < data.length; j++) {
+  //     usersEmailForSort.push(data[j]);
+  //   }
+  //   // console.log(usersEmailForSort);
+
+  //   let sortedUserEmail = function() {
+  //     let email = usersEmailForSort.sort((a, b) => {
+  //       console.log('test print');
+  //       if (a.email.toLowerCase() < b.email.toLowerCase()) {
+  //         return -1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     })    
+  //     setUsersForFilterAndSort(email);
+  //   }
+
+  //   let usersUNForSort = [];
+  //   for (let k = 0; k < data.length; k++) {
+  //     usersUNForSort.push(data[k]);
+  //   }
+  //   // console.log(usersUNForSort);
+
+  //   let sortedUserUN = function() {
+  //     let userName = usersUNForSort.sort((a, b) => {
+  //       console.log('test print');
+  //       if (a.username.toLowerCase() < b.username.toLowerCase()) {
+  //         return -1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     })
+  //     setUsersForFilterAndSort(userName);
+  //   }
+  //   console.log(usersForFilterAndSort);
 
   // let usersPhoneForSort = [];
   // for (let p = 0; p < data.length; p++) {
@@ -175,7 +222,7 @@ function UserData() {
       <Form.Label className="fw-bold">Users Data</Form.Label> <br />
       <h5>Search Data Here: </h5>
       <input type="text" value={search}
-        onChange={(e) => setSearch(e.target.value)} onKeyUp={() => { 
+        onChange={(e) => setSearch(e.target.value)} onKeyUp={() => {
           filterUsers(setShowSortedUserNames(true), setShowUsers(false))
           if (searchLength === 0) {
             // setShowFilteredUsers(false)
@@ -183,59 +230,33 @@ function UserData() {
             setShowSortedUserNames(false)
           }
           if (searchLength > 0) {
-            // setShowFilteredUsers(true)
             setShowUsers(false)
-            // setShowSortedUserWebsites(false)
             setShowSortedUserNames(true)
-            // setShowSortedUsersUN(false)
-            // setShowSortedUsersPhone(false)
-            // setShowSortedUserWebsites(false)
-            // setShowSortedUserNames(false)
           }
         }}></input> <br /><br />
       <Row>
         <Col>
           <button onClick={() => {
-            arrUserNameForSort(usersDataForSort, 'name')
+            sortUsers(usersDataForSort, 'name')
             console.log('sort button clicked');
             setShowSortedUserNames(true)
-            // setShowFilteredUsers(false)
             setShowUsers(false)
-            // setShowSortedUserWebsites(false)
-            // setShowSortedUsersUN(false)
-            // setShowSortedUsersPhone(false)
-            // setShowSortedUserWebsites(false)
           }}>Sort Tbl Names</button></Col>
         <Col>
           <button onClick={() => {
-            sortedUserWebsites(usersDataForSort, 'website')
+            sortUsers(usersDataForSort, 'website')
             setShowSortedUserNames(true)
-            // setShowFilteredUsers(false)
             setShowUsers(false)
-            // setShowFilteredUsers(false)
-            // setShowUsers(false)
-            // setShowSortedUsersUN(false)
-            // setShowSortedUsersPhone(false)
           }}>Sort Tbl website</button></Col>
         <Col><button onClick={() => {
-            sortedUserEmail(usersDataForSort, 'email')
-            setShowSortedUserNames(true)
-            // setShowFilteredUsers(false)
-            setShowUsers(false)
-          // setShowFilteredUsers(false)
-          // setShowUsers(false)
-          // setShowSortedUsersUN(false)
-          // setShowSortedUsersPhone(false)
+          sortUsers(usersDataForSort, 'email')
+          setShowSortedUserNames(true)
+          setShowUsers(false)
         }}>Sort User Email</button></Col>
         <Col><button onClick={() => {
-            sortedUserUN(usersDataForSort, 'username')
-            setShowSortedUserNames(true)
-            // setShowFilteredUsers(false)
-            setShowUsers(false)
-          // setShowSortedUserNames(false)
-          // setShowFilteredUsers(false)
-          // setShowUsers(false)
-          // setShowSortedUsersPhone(false)
+          sortUsers(usersDataForSort, 'username')
+          setShowSortedUserNames(true)
+          setShowUsers(false)
         }}>Sort User-Name</button></Col>
       </Row><br />
       {showUsers && <table className="table1">
@@ -418,3 +439,5 @@ function UserData() {
   );
 }
 export default UserData;
+
+// change table heading style bold & Italic
