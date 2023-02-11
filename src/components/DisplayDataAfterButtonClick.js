@@ -5,9 +5,6 @@ import React from 'react';
 import InvoiceForm from './InvoiceForm';
 // import ListPage from './listPage';
 // import ApiCall from './ApiCall';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import FilterUserData from './FilterUserData';
 
 function DisplayDataAfterButtonClick() {
@@ -15,26 +12,21 @@ function DisplayDataAfterButtonClick() {
     const [button2, setButton2] = React.useState(false);
     return (
         <div className="App d-flex flex-column align-items-center justify-content-center w-100">
-            <Row>
-                <Col>
-                    <Button onClick={() => {
-                        setButton1(true)
-                        setButton2(false)
-                    }}>New Invoice</Button>
-                </Col>
-                <Col>
-                    <Button onClick={() => {
+            <nav class="Nav">
+                <ul>
+                    <li>
+                        <button class="navBarButton" onClick={() => {
+                            setButton1(true)
+                            setButton2(false)
+                        }}>New Invoice</button></li>
+                    <li> <button class="navBarButton" onClick={() => {
                         setButton2(true)
                         setButton1(false)
-                    }}>Users Data</Button>
-                </Col>
-            </Row>
+                    }}>Users Data</button></li>
+                </ul>
+            </nav>
             {button1 && <div><InvoiceForm /></div>}
             {button2 && <div><FilterUserData /></div>}
-            {/* {button2 && <div><ListPage /></div>} */}
-            {/* <Container>
-                <InvoiceForm />
-            </Container> */}
         </div>
     );
 }
