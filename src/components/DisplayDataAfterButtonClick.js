@@ -11,7 +11,7 @@ function DisplayDataAfterButtonClick() {
     const [button1, setButton1] = React.useState(false);
     const [button2, setButton2] = React.useState(false);
     return (
-        <div className="App d-flex flex-column align-items-center justify-content-center w-100">
+        <div className="App d-flex flex-column align-items-center w-100">
             <nav class="Nav">
                 <ul>
                     <li>

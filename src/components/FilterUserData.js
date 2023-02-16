@@ -163,6 +163,11 @@ function UserData() {
     setUsersForFilterAndSort(usersDataAfterSort);
   }
   console.log(usersForFilterAndSort)
+  const toggleshowFilteredAndSortedUsers = () => {
+    setshowFilteredAndSortedUsers(!showFilteredAndSortedUsers)
+    console.log(showFilteredAndSortedUsers);
+  }
+
   return (
     <div className="App">
       <Form.Label className="fw-bold">Users Data</Form.Label> <br />
@@ -173,20 +178,45 @@ function UserData() {
           if (searchLength === 0) {
             setShowUsers(true)
             setshowFilteredAndSortedUsers(false)
-            console.log(showFilteredAndSortedUsers);
           }
           if (searchLength > 0) {
             setShowUsers(false)
             setshowFilteredAndSortedUsers(true)
+            console.log(showFilteredAndSortedUsers);
           }
         }}></input> <br /><br />
       <Row>
+        {/* <Col>
+          <button onClick=
+          {() => {
+            if (showFilteredAndSortedUsers === true && searchLength > 0) {
+              toggleshowFilteredAndSortedUsers(showFilteredAndSortedUsers)
+              console.log(showFilteredAndSortedUsers)
+            }
+            console.log('sort button clicked');
+            if (searchLength > 0) {
+              console.log(showFilteredAndSortedUsers)
+              sortUsersAc(usersForFilterAndSort, 'name')
+              setshowFilteredAndSortedUsers(true)
+              console.log(showFilteredAndSortedUsers)
+            }
+            else {
+              sortUsersAc(usersDataForSort, 'name')
+              setshowFilteredAndSortedUsers(true)
+              setShowUsers(false)
+            }
+            console.log(usersForFilterAndSort)
+          }}
+          >Sort by Names Ac</button>
+        </Col> */}
         <Col>
           <button onClick={() => {
+            setshowFilteredAndSortedUsers(!showFilteredAndSortedUsers)
+            console.log(showFilteredAndSortedUsers)
             console.log('sort button clicked');
             if (searchLength > 0) {
               sortUsersAc(usersForFilterAndSort, 'name')
-              setshowFilteredAndSortedUsers(true)
+              setshowFilteredAndSortedUsers(!showFilteredAndSortedUsers)
               console.log(showFilteredAndSortedUsers)
             }
             else {

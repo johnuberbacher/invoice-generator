@@ -52,13 +52,13 @@ html,
 	display: inline-block;
 }
 .Nav {
-  margin: 0px;
-  padding: 0px;
+  margin: 0px ;
+  padding: 0px ;
   background-color:rgb(19, 7, 7);
   height: 50px;
   width: 100%;
-  display: flex;
-  justify-content:center;
+  display: flex ;
+  justify-content:center ;
 }
 .navBarButton {
   margin-left: 20PX;
