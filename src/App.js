@@ -1,72 +1,56 @@
+import {useState} from "react"
+import Footer from "./Footer"
+import MainDetails from "./MainDetails"
+import Notes from "./Notes"
+import Table from "./Tables"
+import Header from "./Header"
+import MainDetails from "./MainDetails"
+import ClientDetails from "./ClientDetails"
+import Dates from "./Dates"
+
 function App() {
+    const [showInvoice, setShowInvoice] = useState(false)
+    const [name, setName] = useState("")
+    const [adderss, setAddress] = useState("")
+    const [email, setEmail] = useState("")
+    const [phone, setPhone] = useState("")
+    const [bankName, setBankName] = useState("")
+    const [bankAccount, setBankAccount] = useState("")
+    const [website, setWebsite] = useState("")
+    const [clientName, setClientName] = useState("")
+    const [clientAddress, setClientAddress] = useState("")
+    const [invoiceNumber, setInvoiceNumber] = useState("")
+    const [invoiceDate, setInvoiceDate] = useState("")
+    const [dueDate, setDueDate] = useState("")
+    const [notes, setNotes] = useState("")
     const handlePrint = () => {
         window.print()
     }
     return (
       <>
         <main className="m-5 p-5 xl:max-w-4xl xl:mx-auto bg-white rounded shadow">
-            {/* Start of Header */}
-            <header className="flex flex-col items-center justify-center mb-5 xl:flex-row xl:justify-between">
-                <div>
-                <h1 className="font-bold uppercase tracking-wide text-4xl mb-3">Invoicer</h1>
-                </div>
-                <div>
-                <ul className="flex items-center justify-between flex-wrap">
-                    <li><button onClick={handlePrint} className="btn btn-print">Print</button></li>
-                    <li><button className="btn btn-download">Download</button></li>
-                    <li><button className="btn btn-send">Send</button></li>
-                </ul>
-                </div>
-            </header>
-            {/* End of Header */}
-            {/* Start of Your details */}
-            <section className="flex flex-col items-center justify-end">
-                <h2 className="text-xl uppercase">Your Name</h2>
-                <p>Your Address</p>
-            </section>
-            {/* End of Your details */}
-            {/* Start of Client's details */}
-            <section className="mt5">
-                <h2 className="text-xl uppercase">Client's Name</h2>
-                <p>Client's Address</p>
-            </section>
-            {/* End of Client's details */}
-            {/* Start of Dates */}
-            <article className="my-5 flex items-end justify-end">
-                <ul>
-                    <li><span className="font-bold">Incoicer number: </span></li>
-                    <li><span className="font-bold">Invoice Date: </span></li>
-                    <li><span className="font-bold">Due Date: </span></li>
-                </ul>
-            </article>
-            {/*End of Dates*/}
+            {showInvoice ? <div>
+                <Header handlePrint={handlePrint}/>
+                <MainDetails/>
+                <ClientDetails/>
+                <Dates/>
 
-            {/* Start of Table */}
-            <div className="my-5">
-                This is a  table
-            </div>
-            {/* End of Table */}
+                <Table/>
 
-            {/* Start of Notes */}
-            <section className="mb-5">
-                {/* Textarea */}
-                <p>Notes to the client...</p>
-            </section>
-            {/* End of Notes */}
-
-            {/* Start of Footer */}
-            <footer>
-                <ul className="flex flex-wrap items-center justify-center">
-                    <li><span className="font-blod">Your Name:</span> Indu Sree</li>
-                    <li><span className="font-blod">Your Email:</span> info@gmail.com</li>
-                    <li><span className="font-blod">Phone number:</span> 9154867699</li>
-                    <li><span className="font-blod">Bank:</span> Bank Account</li>
-                    <li><span className="font-blod">Account holder:</span> Indu Sree</li>
-                    <li><span className="font-blod">Account number:</span> 123 456 789</li>
-                    <li><span className="font-blod">Website:</span> https://info.com</li>
-                </ul>
-            </footer>
-            {/* End of Footer */}
+                <Notes/>
+                <Footer/>
+                <button onClick={() => setShowInvoice(false)} className="mt-5 bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300">Edit Information</button>
+            </div> : (
+                <>
+                    {/* name, address, email, phone, bank name, bank account number, website, client name, client adderss, invoice number, invoice date, due date, notes */}
+                    <div className="flex flex-col justify-center">
+                        <label htmlFor="name">Enter your name</label>
+                        <input type="text" name="text" id="name" placeholder="Enter your name" autoComplete="off" value={name} />
+                        <button onClick={() => setShowInvoice(true)} className="bg-blue-500 text-white font-bold py-2 px-8 rounded shadow border-2 border-blue-500 hover:bg-transparent hover:text-blue-500 transition-all duration-300">Preview Invoice</button>
+                    </div>
+                </>
+            )}
+            
         </main>
       </>
     )
