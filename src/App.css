@@ -1,72 +1,72 @@
 body, html {
   font-size: 0.9rem;
-  background: #f2f3f7
+  background: #f2f3f7;
 }
 body, .form-control {
-  font-size: 0.9rem
+  font-size: 0.9rem;
 }
 body,
 html,
 #root,
 .App {
-  min-height: 100vh
+  min-height: 100vh;
 }
 .btn {
   font-size: 0.9rem;
   font-weight: 500;
   padding: 0.66rem;
   border-radius: 0.5rem;
-  box-shadow: 0 .1rem .1rem rgba(0,0,0,.05)!important
+  box-shadow: 0 .1rem .1rem rgba(0,0,0,.05)!important;
 }
 .App-link {
   color: #61dafb;
 }
 
 .btn-light {
-  border-color: #dedede
+  border-color: #dedede;
 }
 
 .btn-light:hover {
   border-color: #dedede;
-  background-color: #f3f3f3
+  background-color: #f3f3f3;
 }
 
 .shadow {
-  box-shadow: 0 .1rem .1rem rgba(0,0,0,.05)!important
+  box-shadow: 0 .1rem .1rem rgba(0,0,0,.05)!important;
 }
 
 .modal-content,
 .card {
   overflow: hidden;
-  border-radius: 0.756rem
+  border-radius: 0.756rem;
 }
 
 hr {
-  opacity: 0.1
+  opacity: 0.1;
 }
 
 .table th {
   border-top: 1px solid #0000001a;
   border-bottom: 1px solid #0000001a;
-  border-bottom-color: #0000001a!important
+  border-bottom-color: #0000001a!important;
 }
 .table td {
    text-align: left;
 }
 .table tr th:first-child,
 .table tr td:first-child {
-  padding-left: 0
+  padding-left: 0;
 }
 .table tr th:last-child,
 .table tr td:last-child {
-  padding-right: 0
+  padding-right: 0;
 }
 
 .form-control {
   background: #f5f7f9;
   font-weight: 400;
   padding: .5rem .75rem;
-  border: none
+  border: none;
 }
 .form-control:hover {
   background: #f5f7f9;
@@ -74,7 +74,7 @@ hr {
 .form-control::placeholder,
 .form-control::-ms-input-placeholder,
 .form-control:-ms-input-placeholder {
-  color: #9fa8b0
+  color: #9fa8b0;
 }
 .form-control:focus {
   background: #f5f7f9;
