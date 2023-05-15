@@ -4,7 +4,7 @@ import MainDetails from "./MainDetails"
 import Notes from "./Notes"
 import Table from "./Tables"
 import Header from "./Header"
-import MainDetails from "./MainDetails"
+import Details from "./Details"
 import ClientDetails from "./ClientDetails"
 import Dates from "./Dates"
 
@@ -31,7 +31,7 @@ function App() {
         <main className="m-5 p-5 xl:max-w-4xl xl:mx-auto bg-white rounded shadow">
             {showInvoice ? <div>
                 <Header handlePrint={handlePrint}/>
-                <MainDetails/>
+                <Details/>
                 <ClientDetails/>
                 <Dates/>
 
