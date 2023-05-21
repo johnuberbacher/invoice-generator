@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import InvoiceItem from './InvoiceItem';
 import InvoiceModal from './InvoiceModal';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Alert from './Alert'
 
 class InvoiceForm extends React.Component {
   constructor(props) {
@@ -30,7 +31,8 @@ class InvoiceForm extends React.Component {
       taxRate: '',
       taxAmmount: '0.00',
       discountRate: '',
-      discountAmmount: '0.00'
+      discountAmmount: '0.00',
+      setAlert: false
     };
     this.state.items = [
       {
@@ -51,6 +53,14 @@ class InvoiceForm extends React.Component {
     this.state.items.splice(index, 1);
     this.setState(this.state.items);
   };
+  
+  handleAlert(){
+    this.setState({setAlert: true});
+    setTimeout(() =>{
+      this.setState({setAlert: false});
+    }, 4000)
+  }
+
   handleAddEvent(evt) {
     var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
     var items = {
@@ -60,6 +70,7 @@ class InvoiceForm extends React.Component {
       description: '',
       quantity: 1
     }
+    this.handleAlert();
     this.state.items.push(items);
     this.setState(this.state.items);
   }
@@ -122,8 +133,11 @@ class InvoiceForm extends React.Component {
   };
   closeModal = (event) => this.setState({isOpen: false});
   render() {
-    return (<Form onSubmit={this.openModal}>
+    return (<Form onSubmit={this.openModal}>     
       <Row>
+      <div class='container'>
+        {this.state.setAlert && <Alert />}
+        </div>
         <Col md={8} lg={9}>
           <Card className="p-4 p-xl-5 my-3 my-xl-4">
             <div className="d-flex flex-row align-items-start justify-content-between mb-3">
