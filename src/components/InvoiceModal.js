@@ -27,9 +27,6 @@ function GenerateInvoice() {
 }
 
 class InvoiceModal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>
@@ -120,7 +117,7 @@ class InvoiceModal extends React.Component {
                       {this.props.currency} {this.props.subTotal}
                     </td>
                   </tr>
-                  {this.props.taxAmmount != 0.0 && (
+                  {this.props.taxAmmount !== 0.0 && (
                     <tr className="text-end">
                       <td></td>
                       <td className="fw-bold" style={{ width: "100px" }}>
@@ -131,7 +128,7 @@ class InvoiceModal extends React.Component {
                       </td>
                     </tr>
                   )}
-                  {this.props.discountAmmount != 0.0 && (
+                  {this.props.discountAmmount !== 0.0 && (
                     <tr className="text-end">
                       <td></td>
                       <td className="fw-bold" style={{ width: "100px" }}>
