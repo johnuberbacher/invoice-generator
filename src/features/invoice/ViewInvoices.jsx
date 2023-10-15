@@ -2,7 +2,9 @@ import React from 'react'
 
 const ViewInvoices = () => {
 	return (
+		<>
 		<div>ViewInvoices</div>
+		</>
 	)
 }
 
