@@ -8,7 +8,7 @@ const intialState = {
 const reducers = {
 	// action creators will be auto generated for the reducers
 	addInvoice: (state, action) => {
-
+		state.invoice.push(action.payload)
 	},
 	updateInvoice: (state, action) => {
 

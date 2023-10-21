@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import store from './app/store';
 import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,4 +14,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-reportWebVitals();
