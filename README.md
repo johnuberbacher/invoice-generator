@@ -22,15 +22,41 @@ npm start / npm run build
 ```
 
 ### To-Do
-- [x] Finish parsing data into Preview Modal
+ - Integrate Redux Store
+ - Create Redux actions, action types and reducers to manage invoice state(add, edit, view and delete invoices)
+ - Implement component to to display list of invoices
+ - make list of invoices as first screen and create invoice button
+ - invoice list add buttons or option to view, edit or delete operations
+ - Ensure proper state management throughout the application by connecting components to the Redux store.
+ - Clean and well documented code
+ - implement copy to a new invoice from existing invoice functionality
 
-- [x] Currency Picker
+### Refresher learning
+ - list virtualisation
+ - modals
+ - 
 
-- [x] Calculate Tax and Discounts
+ ### Implementation steps
+ - redux
+ - react-router
+ - Modal-> react-portal 
+ - list component
+		- list virtualisation
+		- search
+ - create/edit/view component
+ - copy to new create component
+ ### packages used
+ - react-redux
+ - redux-toolkit
+ - React router dom
+ - react - toastify
+ - 
 
-- [ ] Store invoices in Firebase DB
-
-
-### Meta
-
-John Uberbacher – [johnuberbacher.com](https://johnuberbacher.com)
+ # additional features
+ - vite
+ - vitest
+ - playwright
+ - hmr
+ - performance observer
+ - Tailwind
+ - 
