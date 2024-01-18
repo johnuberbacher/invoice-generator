@@ -1,18 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Container from 'react-bootstrap/Container';
 import InvoiceForm from './components/InvoiceForm';
-
-class App extends Component {
-  render() {
+import Home from './components/Home/Home';
+import {Routes,Route} from "react-router-dom";
+import {Provider } from "react-redux";
+import store from './Store/store';
+import EditInvoice from './components/Home/EditInvoice';
+const App = ()=>{
   return (
-    <div className="App d-flex flex-column align-items-center justify-content-center w-100">
-      <Container>
-        <InvoiceForm/>
-      </Container>
-    </div>
+    <Provider store={store}>
+      <div className="App d-flex flex-column align-items-center justify-content-center w-100">
+        <Routes>
+        <Route path="/" element={
+              <Home/>
+        }/>
+        <Route path="/create" element={
+              <InvoiceForm/>
+        }/>
+        <Route path="/edit" element={
+              <EditInvoice/>
+        }/>
+        </Routes>
+      </div>
+    </Provider>
+    
   );
-}}
-
+}
 export default App;

@@ -8,31 +8,35 @@ import Card from 'react-bootstrap/Card';
 import InvoiceItem from './InvoiceItem';
 import InvoiceModal from './InvoiceModal';
 import InputGroup from 'react-bootstrap/InputGroup';
-
+import { toHaveStyle } from '@testing-library/jest-dom/matchers';
+import { connect } from 'react-redux';
+import {addInvoice} from "../Store/invoiceSlice.js";
+import {Link} from "react-router-dom";
 class InvoiceForm extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.state = {
       isOpen: false,
-      currency: '$',
-      currentDate: '',
-      invoiceNumber: 1,
-      dateOfIssue: '',
-      billTo: '',
-      billToEmail: '',
-      billToAddress: '',
-      billFrom: '',
-      billFromEmail: '',
-      billFromAddress: '',
-      notes: '',
-      total: '0.00',
-      subTotal: '0.00',
-      taxRate: '',
-      taxAmmount: '0.00',
-      discountRate: '',
-      discountAmmount: '0.00'
+      currency: this.props.invoiceData.currency || '$',
+      currentDate: this.props.invoiceData.currentDate ||'',
+      invoiceNumber: this.props.invoiceData.invoiceNumber ||1,
+      dateOfIssue: this.props.invoiceData.dateOfIssue ||'',
+      billTo: this.props.invoiceData.billTo ||'',
+      billToEmail: this.props.invoiceData.billToEmail ||'',
+      billToAddress: this.props.invoiceData.billToAddress ||'',
+      billFrom: this.props.invoiceData.billFrom ||'',
+      billFromEmail: this.props.invoiceData.billFromEmail ||'',
+      billFromAddress: this.props.invoiceData.billFromAddress ||'',
+      notes: this.props.invoiceData.notes ||'',
+      total: this.props.invoiceData.total ||'0.00',
+      subTotal: this.props.invoiceData.subTotal ||'0.00',
+      taxRate: this.props.invoiceData.taxRate ||'',
+      taxAmmount: this.props.invoiceData.taxAmmount ||'0.00',
+      discountRate: this.props.invoiceData.discountRate ||'',
+      discountAmmount: this.props.invoiceData.discountAmmount ||'0.00'
     };
-    this.state.items = [
+    this.state.items = this.props.invoiceData.items || [
       {
         id: 0,
         name: '',
@@ -117,6 +121,8 @@ class InvoiceForm extends React.Component {
   };
   openModal = (event) => {
     event.preventDefault()
+    console.log(this.state);
+    this.props.dispatch(addInvoice(this.state));
     this.handleCalculateTotal()
     this.setState({isOpen: true})
   };
@@ -238,6 +244,9 @@ class InvoiceForm extends React.Component {
                 </InputGroup.Text>
               </InputGroup>
             </Form.Group>
+            <Link to="/" className='inline-block text-center h-10 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300 active:bg-blue-800'>
+              Home
+            </Link>
           </div>
         </Col>
       </Row>
@@ -245,4 +254,4 @@ class InvoiceForm extends React.Component {
   }
 }
 
-export default InvoiceForm;
+export default connect()(InvoiceForm);
